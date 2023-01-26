@@ -15,6 +15,7 @@ public class Main {
         Person person1 = new Person(11, "Pepe Gomez",22, "occupation");
         Person person2 = new Person(12, "Alez Hernandez",33, "occupation");
         Person person3 = new Person(13, "Lolo Perez",44, "occupation");
+        Person person4 = null;
 
         List<Person> lista = new ArrayList<>();
         lista.add(person1);
@@ -27,14 +28,18 @@ public class Main {
         Person clonedPerson1 = clonePerson(person1);
         System.out.println(clonedPerson1);
 
-        writePerson(person2);
-        writePerson(person3);
+        //writePerson(person2);
+        //writePerson(person3);
+        writePerson(person4);
     }
     public static Person clonePerson(Person person){
         Person clonePerson = new Person((int)Math.floor(Math.random()*(9999 - 1000 + 1) + 1000),person.getName(), person.getAge(),person.getOccupation());
         return clonePerson;
     }
     public static void writePerson(Person person) throws IOException {
+        if (person == null){
+            throw new IllegalArgumentException("Person cannot be null");
+        }
 
         FileWriter writer = new FileWriter("personlist.txt", true);
         writer.write(person.toString()+"\n");
